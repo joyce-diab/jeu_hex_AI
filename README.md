@@ -1,4 +1,4 @@
-#Jeu de Hex et bandits manchots
+# Jeu de Hex et bandits manchots
 Le jeu de Hex est un jeu combinatoire abstrait pour deux joueurs qui se joue sur un tablier d'hexagones blancs de taille allant jusqu'à 14x14. 
 Les joueurs, Bleu et Rouge, colorient tour à tour un hexagone blanc et l'objectif est de former une ligne de sa couleur qui relie Est et Ouest pour le joueur Bleu, et Nord et Sud pour le joueur Rouge. 
 La combinatoire du jeu étant grande, il est pertinent d'utiliser un algorithme de recherche arborescente de Monte Carlo (MCTS) classiquement utilisé au Go pour résoudre le jeu. Cet algorithme, inspiré de stratégies de joueurs sur bandits machots, va explorer petit à petit l'arbre du jeu en simulant des parties entières, dans la limite d'un budget disponible. Plus le budget est élevé, plus un joueur pourra approximer les meilleurs coups à jouer. 
