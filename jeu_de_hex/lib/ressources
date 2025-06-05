@@ -1,0 +1,34 @@
+https://www.baeldung.com/java-monte-carlo-tree-search
+
+https://github.com/mathildehaugum/mcts-hex
+
+
+
+https://github.com/theKGS/MCTS //a revoir
+
+https://mcts.ai/code/java.html
+
+
+https://github.com/Khumquat1/Hex-Game-in-C-/blob/master/HexGame.cpp en c++
+
+https://blog.devgenius.io/monte-carlo-tree-search-implementing-reinforcement-learning-in-real-time-game-player-a9c412ebeff5
+
+
+https://www.baeldung.com/java-monte-carlo-tree-search
+
+https://github.com/shani-pls/MonteCarloTreeSearch/blob/Shani/src/MonteCarloTreeSearch.java
+
+
+
+
+I'll outline a solution that should be much faster. But it uses a data structure that I don't see used very much.
+
+As I outlined in Create a space-efficient Snapshot Set, we can construct an immutable tree. And then we can create a point modification of said tree in O(log(n)) steps with O(log(n)) extra data. If you don't keep hold of the root of the old tree, it gets garbage collected. If you do keep hold of it, you can easily have many versions of the same data set, using very little memory for each version.
+
+There I was just constructing the equivalent of a Python set. But you can also use it to construct the equivalent of a Python dictionary. And once you have that, you can build more complex data structures still.
+
+In particular you can implement a union-find where you can easily try out the effects of playing a new move.
+
+But you can use this in other ways as well. If you switch your board from an array of arrays to one of these clonable dictionaries AND add a __hash__ method to the data structure, then you can make moves in time O(log(n)) (which you exceed anyways doing the union-find) AND you can know when you run into the same board state again. Which will tend to happen when you're doing your search to 3 or more ply.
+
+But be warned. Using this data structure is algorithmically good. But a data structure like this implemented in Python runs much slower than stupid native data structures. So you'll need to benchmark to see whether being clever is worth doing something complicated. (For small boards, no. For large ones, yes. The cutover requires benchmarking.)

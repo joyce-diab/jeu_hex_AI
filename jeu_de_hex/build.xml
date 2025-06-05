@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="jeu_de_hex" default="compile" basedir=".">
+    <!-- Définir les propriétés -->
+    <property name="src.dir" value="src"/>
+    <property name="bin.dir" value="bin"/>
+    <property name="lib.dir" value="lib"/>
+
+    <!-- Utiliser la tâche path pour le classpath -->
+    <path id="classpath">
+        <fileset dir="${lib.dir}">
+            <include name="**/*.jar"/>
+        </fileset>
+        <fileset dir="${bin.dir}">
+            <include name="**/*.class"/>
+        </fileset>
+    </path>
+
+    <!-- Tâche de nettoyage des fichiers générés -->
+    <target name="clean">
+        <delete dir="${bin.dir}"/>
+    </target>
+
+    <!-- Tâche de compilation des fichiers source -->
+    <target name="compile" depends="clean">
+        <mkdir dir="${bin.dir}"/>
+        <!-- Compilation récursive de tous les fichiers .java dans src/hex et sous-répertoires -->
+        <javac srcdir="${src.dir}" destdir="${bin.dir}" classpathref="classpath" includeantruntime="false">
+            <include name="**/*.java"/> <!-- Inclut tous les fichiers .java, y compris ceux dans les sous-répertoires -->
+        </javac>
+    </target>
+
+    <!-- Tâche pour exécuter le programme (par exemple, jeu de hex) -->
+    <target name="run" depends="compile">
+        <java classname="hex.view.gui.Main" classpath="${bin.dir}" fork="true">
+        </java>
+    </target>
+
+    <!-- Tâche pour créer un fichier JAR -->
+    <target name="jar" depends="compile">
+        <mkdir dir="dist"/>
+        <jar destfile="dist/jeu_de_hex.jar" basedir="${bin.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="hex.view.gui.Main"/>
+            </manifest>
+        </jar>
+    </target>
+
+</project>
