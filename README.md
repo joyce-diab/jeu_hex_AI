@@ -20,6 +20,6 @@ RED utilise MCTS et BLUE utilise RAVE
   - Le joueur ajouter dans la liste en premier est celui qui commence
   
   
- #Expérimentation réalisée
+# Expérimentation réalisée
  
 Pour plus d'informations, consultez le rapport et les graphes
