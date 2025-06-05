@@ -1,14 +1,3 @@
-# Membres du groupe 
-
-ABOGOUNRIN Ayath
-
-DIAB Joyce 
-
-BOUAMAR Lina
-
-KAMGANG KENMOE Miguel Jordan
-
-
 # Commandes pour le lancement du jeu
 
 Lancer la commande suivant dans le répertoire jeu_de_hex. 
